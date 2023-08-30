@@ -1,7 +1,7 @@
 import random
 import time
 
-OPERATORS = ["+", "-", "*"]
+OPERATORS = ["+", "-", "*", "/"]
 MIN_OPERAND = 2
 MAX_OPERAND = 10
 TOTAL_PROBLEMS = 5
@@ -14,7 +14,7 @@ def generate_problem():
 
     problem = str(first_operand) + " " + operator + " " + str(second_operand)
     answer = eval(problem)
-    return problem, answer
+    return problem, round(answer, 2)
 
 
 wrong_answers = 0
@@ -24,11 +24,15 @@ print("-----------------------")
 start_time = time.time()
 
 for i in range(TOTAL_PROBLEMS):
-    problem, answer = generate_problem()
+    problem, (answer) = generate_problem()
+    print(answer)
     while True:
         user_answer = input("Problem #" + str(i + 1) + ": " + problem + " =")
         if user_answer == str(answer):
+
             break
+        else:
+            print("Try again!")
         wrong_answers += 1
 
 end_time = time.time()
